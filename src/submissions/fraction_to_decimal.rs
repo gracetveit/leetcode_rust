@@ -3,6 +3,7 @@ use super::Solution;
 use std::collections::HashMap;
 
 impl Solution {
+    /// Solution for https://leetcode.com/problems/fraction-to-recurring-decimal/
     pub fn fraction_to_decimal(n: i32, d: i32) -> String {
         println!("{:?}", n);
         if n == 0 {
