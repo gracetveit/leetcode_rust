@@ -1,6 +1,7 @@
 use super::Solution;
 
 impl Solution {
+    /// Solution for https://leetcode.com/problems/count-of-smaller-numbers-after-self/submissions/
     pub fn count_smaller(nums: Vec<i32>) -> Vec<i32> {
         if nums.len() <= 1 {
             return vec![0];
