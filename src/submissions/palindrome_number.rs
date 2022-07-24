@@ -1,6 +1,7 @@
 use super::Solution;
 
 impl Solution {
+    /// Solution for https://leetcode.com/problems/palindrome-number/
     pub fn is_palindrome(x: i32) -> bool {
         println!("{:?}, {:?}", x.to_string(), Solution::reverse_str(&x.to_string()));
         x.to_string() == Solution::reverse_str(&x.to_string())
