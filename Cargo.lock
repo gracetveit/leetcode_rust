@@ -3,5 +3,5 @@
 version = 3
 
 [[package]]
-name = "fraction_recurring_decimal"
+name = "leetcode_rust"
 version = "0.1.0"
