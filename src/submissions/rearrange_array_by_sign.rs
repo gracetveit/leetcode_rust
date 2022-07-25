@@ -1,4 +1,4 @@
-use super::Solution;
+use crate::Solution;
 
 impl Solution {
     /// Solution for
@@ -8,7 +8,7 @@ impl Solution {
     ///
     /// # Examples
     /// ```rust
-    /// use leetcode_rust::submissions::Solution;
+    /// use leetcode_rust::Solution;
     ///
     /// assert_eq!(Solution::rearrange_array(vec![3, 1, -2, -5, 2, -4]), [3, -2, 1, -5, 2, -4])
     /// ```

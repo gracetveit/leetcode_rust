@@ -1,4 +1,4 @@
-use super::Solution;
+use crate::Solution;
 
 impl Solution {
     /// Solution for https://leetcode.com/problems/palindrome-number/
@@ -15,7 +15,7 @@ impl Solution {
         let mut x: i32 = input_string.len() as i32 - 1;
         while x >= 0 {
             return_string.push(string_chars[x as usize]);
-            x = x - 1; 
+            x = x - 1;
         }
 
         return_string

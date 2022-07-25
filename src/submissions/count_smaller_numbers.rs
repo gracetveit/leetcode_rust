@@ -1,4 +1,4 @@
-use super::Solution;
+use crate::Solution;
 
 impl Solution {
     /// Solution for https://leetcode.com/problems/count-of-smaller-numbers-after-self/submissions/
