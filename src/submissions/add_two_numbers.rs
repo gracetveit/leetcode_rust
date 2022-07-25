@@ -1,4 +1,4 @@
-use super::Solution;
+use crate::Solution;
 
 // Definition for singly-linked list.
 #[derive(PartialEq, Eq, Clone, Debug)]
@@ -55,7 +55,7 @@ impl Solution {
     /// # Examples
     /// ```rust
     /// use leetcode_rust::submissions::add_two_numbers::ListNode;
-    /// use leetcode_rust::submissions::Solution;
+    /// use leetcode_rust::Solution;
     ///
     /// let l1 = ListNode::from_vec(vec![2, 4, 3]);
     /// let l2 = ListNode::from_vec(vec![5, 6, 4]);
