@@ -73,7 +73,56 @@ impl Solution {
         l1: Option<Box<ListNode>>,
         l2: Option<Box<ListNode>>,
     ) -> Option<Box<ListNode>> {
-        Some(Box::new(ListNode::from_vec(vec![7, 0, 8])))
+        match (l1, l2) {
+            (None, None) => None,
+            (_1, _2) => Solution::recurring_sum(0, _1, _2)
+        }
+    }
+
+    fn recurring_sum(
+        cur_sum: i32,
+        l1: Option<Box<ListNode>>,
+        l2: Option<Box<ListNode>>,
+    ) -> Option<Box<ListNode>> {
+        match (cur_sum, l1, l2) {
+            (0, None, None) => None,
+            (_sum, _l1, _l2) => {
+                let new_sum = Solution::add_with_rollover(_sum, Solution::option_sum(&_l1, &_l2));
+                let next_nodes = Solution::unpack_list_node(_l1, _l2);
+                let mut new_node = ListNode::new(new_sum.0);
+                let next_node = Solution::recurring_sum(new_sum.1, next_nodes.0, next_nodes.1);
+                new_node.next = next_node;
+                return Some(Box::new(new_node));
+
+            }
+        }
+    }
+
+    fn unpack_list_node(l1: Option<Box<ListNode>>, l2: Option<Box<ListNode>>) -> (Option<Box<ListNode>>, Option<Box<ListNode>>) {
+        match (l1, l2) {
+            (None, None) => (None, None),
+            (Some(x), None) => (x.next, None),
+            (None, Some(x)) => (x.next, None),
+            (Some(x), Some(y)) => (x.next, y.next)
+        }
+    }
+
+    fn option_sum(l1: &Option<Box<ListNode>>, l2: &Option<Box<ListNode>>) -> i32 {
+        match (l1, l2) {
+            (None, None) => 0,
+            (Some(x), Some(y)) => x.val + y.val,
+            (Some(x), None) => x.val,
+            (None, Some(x)) => x.val
+        }
+    }
+
+    fn add_with_rollover(a:i32, b:i32) -> (i32, i32) {
+        let sum = a + b;
+        if sum >= 10 {
+            return (sum % 10, (sum as f64 / 10.0).floor() as i32);
+        } else {
+            return (sum, 0);
+        }
     }
 }
 
