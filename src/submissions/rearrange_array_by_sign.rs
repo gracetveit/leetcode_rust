@@ -20,36 +20,20 @@ impl Solution {
     }
 
     fn split_nums(nums: Vec<i32>) -> (Vec<i32>, Vec<i32>) {
-        let mut positive: Vec<i32> = Vec::new();
-        let mut negative: Vec<i32> = Vec::new();
-
-        for x in nums {
-            if x >= 0 {
-                positive.push(x);
-            } else {
-                negative.push(x);
-            }
-        }
-
-        (positive, negative)
+        nums
+            .into_iter()
+            .partition(|n| {
+                n >= &0
+            })
     }
 
     fn combine_nums(positive: Vec<i32>, negative: Vec<i32>) -> Vec<i32> {
-        let mut ret_vec: Vec<i32> = Vec::new();
-        let mut p_index = 0;
-        let mut n_index = 0;
-
-        while p_index < positive.len() || n_index < negative.len() {
-            if p_index < positive.len() {
-                ret_vec.push(positive[p_index]);
-                p_index += 1;
-            }
-            if n_index < negative.len() {
-                ret_vec.push(negative[n_index]);
-                n_index += 1;
-            }
-        }
-
-        ret_vec
+        positive.into_iter()
+            .zip(negative.into_iter())
+            .map(|e| {
+                [e.0, e.1]
+            })
+            .flatten()
+            .collect()
     }
 }
