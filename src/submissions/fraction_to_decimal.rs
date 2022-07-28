@@ -16,13 +16,7 @@ impl Solution {
         let whole_decimal_as_string = (n as f64 / d as f64).to_string();
         let whole_as_string = whole_decimal_as_string.split('.').collect::<Vec<&str>>()[0];
 
-        let mut return_string: String = String::from("");
-
-        return_string.push_str(whole_as_string);
-        return_string.push('.');
-        return_string.push_str(&repeating_element);
-
-        return_string
+        format!("{}.{}", whole_as_string, repeating_element)
     }
 
     fn does_repeat(n: i64, d: i64) -> String {
