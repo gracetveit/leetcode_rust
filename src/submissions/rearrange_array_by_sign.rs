@@ -20,19 +20,14 @@ impl Solution {
     }
 
     fn split_nums(nums: Vec<i32>) -> (Vec<i32>, Vec<i32>) {
-        nums
-            .into_iter()
-            .partition(|n| {
-                n >= &0
-            })
+        nums.into_iter().partition(|n| n >= &0)
     }
 
     fn combine_nums(positive: Vec<i32>, negative: Vec<i32>) -> Vec<i32> {
-        positive.into_iter()
+        positive
+            .into_iter()
             .zip(negative.into_iter())
-            .map(|e| {
-                [e.0, e.1]
-            })
+            .map(|e| [e.0, e.1])
             .flatten()
             .collect()
     }

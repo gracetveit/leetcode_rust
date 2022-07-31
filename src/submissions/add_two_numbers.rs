@@ -75,7 +75,7 @@ impl Solution {
     ) -> Option<Box<ListNode>> {
         match (l1, l2) {
             (None, None) => None,
-            (_1, _2) => Solution::recurring_sum(0, _1, _2)
+            (_1, _2) => Solution::recurring_sum(0, _1, _2),
         }
     }
 
@@ -93,17 +93,19 @@ impl Solution {
                 let next_node = Solution::recurring_sum(new_sum.1, next_nodes.0, next_nodes.1);
                 new_node.next = next_node;
                 return Some(Box::new(new_node));
-
             }
         }
     }
 
-    fn unpack_list_node(l1: Option<Box<ListNode>>, l2: Option<Box<ListNode>>) -> (Option<Box<ListNode>>, Option<Box<ListNode>>) {
+    fn unpack_list_node(
+        l1: Option<Box<ListNode>>,
+        l2: Option<Box<ListNode>>,
+    ) -> (Option<Box<ListNode>>, Option<Box<ListNode>>) {
         match (l1, l2) {
             (None, None) => (None, None),
             (Some(x), None) => (x.next, None),
             (None, Some(x)) => (x.next, None),
-            (Some(x), Some(y)) => (x.next, y.next)
+            (Some(x), Some(y)) => (x.next, y.next),
         }
     }
 
@@ -112,11 +114,11 @@ impl Solution {
             (None, None) => 0,
             (Some(x), Some(y)) => x.val + y.val,
             (Some(x), None) => x.val,
-            (None, Some(x)) => x.val
+            (None, Some(x)) => x.val,
         }
     }
 
-    fn add_with_rollover(a:i32, b:i32) -> (i32, i32) {
+    fn add_with_rollover(a: i32, b: i32) -> (i32, i32) {
         let sum = a + b;
         if sum >= 10 {
             return (sum % 10, (sum as f64 / 10.0).floor() as i32);

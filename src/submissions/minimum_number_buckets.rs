@@ -12,10 +12,10 @@ impl Solution {
     pub fn minimum_buckets(street: String) -> i32 {
         // Identify unreachable houses
         if Solution::unreachable_houses(&street) {
-            return -1
+            return -1;
         }
         // Identify Shared Buckets
-        // 
+        //
         //
         // Identify Buckets attached to a house
 
@@ -37,55 +37,50 @@ impl Solution {
                 if bucket_flag {
                     bucket_flag = false;
                     needs_bucket = false;
-                } else if !needs_bucket{
+                } else if !needs_bucket {
                     needs_bucket = true;
                 } else {
-                    return true
+                    return true;
                 }
             }
         }
         if needs_bucket {
-            return true
+            return true;
         } else {
-            return false
+            return false;
         }
     }
 
     fn shared_buckets(street: &str) -> i32 {
         let mut count = street.matches("H.H").collect::<Vec<&str>>().len();
-        count += street.split("H.H")
+        count += street
+            .split("H.H")
             .collect::<Vec<&str>>()
             .into_iter()
-            .map(|x|{String::from(x)})
-            .reduce(|acc: String, cur: String| -> String{
-                format!("{}{}", acc, cur)
-            })
+            .map(|x| String::from(x))
+            .reduce(|acc: String, cur: String| -> String { format!("{}{}", acc, cur) })
             .unwrap()
             .matches("H")
             .collect::<Vec<&str>>()
             .len();
         count as i32
     }
-
-    fn attached_to_house((remaining_houses, count): (String, i32)) -> i32 {
-        todo!();
-    }
-
-
-
 }
 
 #[test]
-fn middle_check(){
+fn middle_check() {
     assert_eq!(Solution::minimum_buckets(String::from(".H.H.")), 1);
 }
 
 #[test]
-fn impossible_check(){
+fn impossible_check() {
     assert_eq!(Solution::minimum_buckets(String::from(".HHH.")), -1);
 }
 
 #[test]
-fn example_0(){
-    assert_eq!(Solution::minimum_buckets(String::from(".HH.HH.HH.HH..H")), 6)
+fn example_0() {
+    assert_eq!(
+        Solution::minimum_buckets(String::from(".HH.HH.HH.HH..H")),
+        6
+    )
 }
