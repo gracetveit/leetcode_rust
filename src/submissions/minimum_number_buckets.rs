@@ -19,7 +19,7 @@ impl Solution {
         //
         // Identify Buckets attached to a house
 
-        Solution::attached_to_house(Solution::shared_buckets(street))
+        Solution::shared_buckets(&street)
     }
 
     fn unreachable_houses(street: &str) -> bool {
@@ -28,8 +28,8 @@ impl Solution {
         for x in street.chars() {
             if x == '.' {
                 if needs_bucket {
-                    bucket_flag = false;
                     needs_bucket = false;
+                    bucket_flag = true;
                 } else {
                     bucket_flag = true;
                 }
@@ -44,11 +44,27 @@ impl Solution {
                 }
             }
         }
-        false
+        if needs_bucket {
+            return true
+        } else {
+            return false
+        }
     }
 
-    fn shared_buckets(street: String) -> (String, i32) {
-        todo!();
+    fn shared_buckets(street: &str) -> i32 {
+        let mut count = street.matches("H.H").collect::<Vec<&str>>().len();
+        count += street.split("H.H")
+            .collect::<Vec<&str>>()
+            .into_iter()
+            .map(|x|{String::from(x)})
+            .reduce(|acc: String, cur: String| -> String{
+                format!("{}{}", acc, cur)
+            })
+            .unwrap()
+            .matches("H")
+            .collect::<Vec<&str>>()
+            .len();
+        count as i32
     }
 
     fn attached_to_house((remaining_houses, count): (String, i32)) -> i32 {
@@ -69,4 +85,7 @@ fn impossible_check(){
     assert_eq!(Solution::minimum_buckets(String::from(".HHH.")), -1);
 }
 
-
+#[test]
+fn example_0(){
+    assert_eq!(Solution::minimum_buckets(String::from(".HH.HH.HH.HH..H")), 6)
+}
