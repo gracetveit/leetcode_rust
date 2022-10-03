@@ -6,9 +6,23 @@ impl Solution {
     /// Returns an arary of all integers of length `n` where the difference
     /// between every two consecutive digits is `k`.
     pub fn nums_same_consec_diff(n: i32, k: i32) -> Vec<i32> {
-        //
+        let mut n_digit_integers = Solution::generate_n_digit_integers(n);
+        n_digit_integers
+            .into_iter()
+            .filter(|x| Solution::consecutive_digits_is_k_long(x, k))
+            .collect()
+        // todo!()
+    }
+
+    fn generate_n_digit_integers(n: i32) -> Vec<i32> {
         todo!()
     }
+
+    fn consecutive_digits_is_k_long(n: &i32, k: i32) -> bool {
+        todo!()
+    }
+
+
 }
 
 #[test]
