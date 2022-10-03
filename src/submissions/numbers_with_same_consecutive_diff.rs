@@ -48,7 +48,7 @@ impl Solution {
 #[test]
 fn example_0() {
     let ans = vec![181, 292, 707, 818, 929];
-    assert_eq!(Solution::nums_same_consec_diff(3, 7), ans)
+    assert_eq!(Solution::nums_same_consec_diff(3, 7), ans);
 }
 
 #[test]
@@ -56,7 +56,7 @@ fn example_1() {
     let ans = vec![
         10, 12, 21, 23, 32, 34, 43, 45, 54, 56, 65, 67, 76, 78, 87, 89, 98,
     ];
-    assert_eq!(Solution::nums_same_consec_diff(2, 1), ans)
+    assert_eq!(Solution::nums_same_consec_diff(2, 1), ans);
 }
 
 #[test]
@@ -64,4 +64,12 @@ fn test_generate_n_digit_integers() {
     let ans = Solution::generate_n_digit_integers(2);
     assert_eq!(ans[0], 10);
     assert_eq!(ans[ans.len() - 1], 99);
+}
+
+#[test]
+fn test_consecutive_digits_is_k_long() {
+    assert_eq!(Solution::consecutive_digits_is_k_long(&181, 7), true);
+    assert_eq!(Solution::consecutive_digits_is_k_long(&101, 7), false);
+    assert_eq!(Solution::consecutive_digits_is_k_long(&10, 1), true);
+    assert_eq!(Solution::consecutive_digits_is_k_long(&13, 1), false);
 }
