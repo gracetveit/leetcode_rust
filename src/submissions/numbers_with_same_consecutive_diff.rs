@@ -41,7 +41,33 @@ impl Solution {
     }
 
     fn consecutive_digits_is_k_long(n: &i32, k: i32) -> bool {
-        todo!()
+        let digits_as_string = n.to_string();
+
+        let digits = digits_as_string
+            .split("")
+            .filter(|e| e != &"")
+            .map(|e| {
+                let res_e = e.parse::<i32>();
+                match res_e {
+                    Ok(res_e) => res_e,
+                    _ => {
+                        panic!()
+                    }
+                }
+            })
+            .collect::<Vec<i32>>();
+
+        for x in 1..digits.len() {
+            let y = x - 1;
+
+            let diff = digits[x] - digits[y];
+            if diff.abs() != k {
+                return false;
+            }
+        }
+        true
+        // println!("{:?}", digits);
+        // todo!()
     }
 }
 
