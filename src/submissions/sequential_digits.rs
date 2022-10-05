@@ -20,22 +20,19 @@ impl Solution {
 
     fn is_sequential(n: i32) -> bool {
         let parsed_n: Vec<i32> = n
-        .to_string()
-        .split("")
-        .filter(|e| e != &"")
-        .map(|e| {
-            match e.parse::<i32>(){
-                Ok(e)=> e,
-                Err(_) => panic!()
-            }
-        }
-        )
-        .collect();
+            .to_string()
+            .split("")
+            .filter(|e| e != &"")
+            .map(|e| match e.parse::<i32>() {
+                Ok(e) => e,
+                Err(_) => panic!(),
+            })
+            .collect();
 
         for y in 1..parsed_n.len() {
             let x = y - 1;
             if parsed_n[y] != parsed_n[x] + 1 {
-                return false
+                return false;
             }
         }
         true
